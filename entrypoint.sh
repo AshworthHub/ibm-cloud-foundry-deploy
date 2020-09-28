@@ -113,7 +113,7 @@ cd $ROOT_PATH
 # Pushing all files and starting deployment process
 {
     echo "Starting deployment"
-    ibmcloud cf push > /dev/null
+    ibmcloud cf push > /dev/null -f $MANIFEST_FILE_PATH
 } || {
     echo "Deployment Failed"
     exit 1
