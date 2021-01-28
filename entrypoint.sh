@@ -107,18 +107,13 @@ echo "Auth Success"
     exit 1
 }
 
-echo "Installing cloud foundry blue-green-deploy plugin"
-# Installing cloud foundry blue-green-deploy plugin
-ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org > /dev/null
-ibmcloud cf install-plugin blue-green-deploy -r CF-Community -f > /dev/null
-
 # Changing the working dir to the manifest.yml directory
 cd $ROOT_PATH
 
 # Pushing all files and starting deployment process
 {
     echo "Starting deployment"
-    ibmcloud cf blue-green-deploy > /dev/null -f $MANIFEST_FILE_PATH
+    ibmcloud cf push > /dev/null -f $MANIFEST_FILE_PATH
 } || {
     echo "Deployment Failed"
     exit 1
