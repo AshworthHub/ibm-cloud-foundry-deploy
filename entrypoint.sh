@@ -99,11 +99,6 @@ echo "Authenticating"
 }
 echo "Auth Success"
 
-echo "Installing cloud foundry blue-green-deploy plugin"
-# Installing cloud foundry blue-green-deploy plugin
-ibmcloud plugin repo-add CF-Community https://plugins.cloudfoundry.org
-ibmcloud plugin install blue-green-deploy -r CF-Community -f
-
 # Adding other metadata like CF_API_ENDPOINT, org name and space
 {
     ibmcloud target --cf-api $CF_API_ENDPOINT -o $ORG -s $SPACE -q > /dev/null
@@ -111,6 +106,11 @@ ibmcloud plugin install blue-green-deploy -r CF-Community -f
     echo "Wrong CF_API_ENDPOINT or ORG or SPACE Credentials"
     exit 1
 }
+
+echo "Installing cloud foundry blue-green-deploy plugin"
+# Installing cloud foundry blue-green-deploy plugin
+ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+ibmcloud cf install-plugin blue-green-deploy -r CF-Community -f
 
 # Changing the working dir to the manifest.yml directory
 cd $ROOT_PATH
