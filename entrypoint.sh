@@ -111,8 +111,8 @@ echo "Auth Success"
 cd $ROOT_PATH
 
 echo "Installing blue/green plugin"
-ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
-ibmcloud cf install-plugin blue-green-deploy -f -r CF-Community
+ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org > /dev/null
+ibmcloud cf install-plugin blue-green-deploy -f -r CF-Community > /dev/null
 
 
 # Pushing all files and starting deployment process
