@@ -83,7 +83,7 @@ echo "Installing cloud foundry"
 # Installing cloud foundry CLI
 ibmcloud cf install -q
 ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
-ibmcloud install-plugin blue-green-deploy -r CF-Community
+ibmcloud cf install-plugin blue-green-deploy -r CF-Community
 
 echo "Authenticating"
 
