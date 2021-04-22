@@ -107,12 +107,13 @@ echo "Auth Success"
     exit 1
 }
 
+# Changing the working dir to the manifest.yml directory
+cd $ROOT_PATH
+
 echo "Installing blue/green plugin"
 ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
 ibmcloud cf install-plugin blue-green-deploy -f -r CF-Community
 
-# Changing the working dir to the manifest.yml directory
-cd $ROOT_PATH
 
 # Pushing all files and starting deployment process
 {
