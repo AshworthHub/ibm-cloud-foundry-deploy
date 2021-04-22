@@ -82,6 +82,8 @@ curl -fsSL https://clis.cloud.ibm.com/install/linux | sh > /dev/null
 echo "Installing cloud foundry"
 # Installing cloud foundry CLI
 ibmcloud cf install -q
+ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+ibmcloud install-plugin blue-green-deploy -r CF-Community
 
 echo "Authenticating"
 
@@ -113,7 +115,7 @@ cd $ROOT_PATH
 # Pushing all files and starting deployment process
 {
     echo "Starting deployment"
-    ibmcloud cf push > /dev/null -f $MANIFEST_FILE_PATH
+    ibmcloud cf blue-green-deploy > /dev/null -f $MANIFEST_FILE_PATH
 } || {
     echo "Deployment Failed"
     exit 1
