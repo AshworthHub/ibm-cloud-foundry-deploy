@@ -82,8 +82,6 @@ curl -fsSL https://clis.cloud.ibm.com/install/linux | sh > /dev/null
 echo "Installing cloud foundry"
 # Installing cloud foundry CLI
 ibmcloud cf install -q
-ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
-ibmcloud cf install-plugin blue-green-deploy -r CF-Community
 
 echo "Authenticating"
 
@@ -100,6 +98,10 @@ echo "Authenticating"
     exit 1
 }
 echo "Auth Success"
+
+echo "Installing blue/green plugin"
+ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+ibmcloud cf install-plugin blue-green-deploy -r CF-Community
 
 # Adding other metadata like CF_API_ENDPOINT, org name and space
 {
